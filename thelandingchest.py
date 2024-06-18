@@ -119,6 +119,7 @@ while(1!=0):
         run(2500)
         # turn(20,-21)
         pydirectinput.moveRel(-420,0,relative=True)
+        pydirectinput.leftclick()
         run(6200)
         time.sleep(0.5)
         pydirectinput.keyDown("e")
