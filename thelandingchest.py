@@ -171,4 +171,4 @@ while(1!=0):
     pydirectinput.keyDown("o")
     time.sleep(4)
     pydirectinput.keyUp("o")
-    time.sleep(5)
+    time.sleep(15)
