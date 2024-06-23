@@ -1,195 +1,209 @@
-import pydirectinput
+from pydirectinput import (
+    keyDown,
+    keyUp,
+    move,
+    moveRel,
+    moveTo,
+    mouseDown,
+    mouseUp,
+    press,
+    leftClick,
+    rightClick,
+    FAILSAFE
+)
 import time
 
-j=0
-tabo=0
-
-pydirectinput.FAILSAFE=False
+FAILSAFE=False
 
 def turn(times:int,px:int):
     i=1
     while(i<times):
-        pydirectinput.move(px,0)
+        move(px,0)
         i=i+1
     i=1
 
-
 def run(t:int):
-    pydirectinput.keyDown("w")
+    keyDown("w")
     time.sleep(0.01)
-    pydirectinput.keyDown("shiftleft")
+    keyDown("shiftleft")
     time.sleep(t/1050)
-    pydirectinput.keyUp("w")
-    pydirectinput.keyUp("shiftleft")
+    keyUp("w")
+    keyUp("shiftleft")
 
-time.sleep(2)
-while(1!=0):
+def start():
+    j=0
     while j!=3:
         time.sleep(0.05)
-        pydirectinput.press("m")
+        press("m")
         j=j+1
     j=0
     time.sleep(1.5)
-    pydirectinput.leftClick()
-    pydirectinput.leftClick()
+    leftClick()
+    leftClick()
     time.sleep(0.5)
-    pydirectinput.move(-958,0)
+    move(-958,0)
     time.sleep(1)
     turn(20,50)
     time.sleep(0.03)
-    pydirectinput.leftClick()
-    pydirectinput.leftClick()
-    pydirectinput.mouseDown()
+    leftClick()
+    leftClick()
+    mouseDown()
     time.sleep(1.2)
-    pydirectinput.mouseUp()
+    mouseUp()
     time.sleep(0.2)
-    pydirectinput.moveTo(1498,913)
+    moveTo(1498,913)
     time.sleep(0.2)
-    pydirectinput.leftClick()
-    pydirectinput.leftClick()
+    leftClick()
+    leftClick()
     time.sleep(60)
 
 
     i=20
     while(i!=0):
         i=i-1
-        pydirectinput.moveRel(-320,0,relative=True)
+        moveRel(-320,0,relative=True)
         run(5000)
         #turn(20,-10)
-        pydirectinput.moveRel(-200,0,relative=True)
+        moveRel(-200,0,relative=True)
         run(3100)
         # turn(20,-30)
-        pydirectinput.moveRel(-600,0,relative=True)
+        moveRel(-600,0,relative=True)
         run(300)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")                   #箱1
+        keyDown("f")                   #箱1
         time.sleep(1.3)
-        pydirectinput.keyUp("e")
+        keyUp("f")
         #turn(20,54)
-        pydirectinput.moveRel(1080,0,relative=True)
+        moveRel(1080,0,relative=True)
         run(5710)
         # turn(20,-56)
-        pydirectinput.moveRel(-1120,0,relative=True)
+        moveRel(-1120,0,relative=True)
         run(2300)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")
+        keyDown("f")
         time.sleep(1.3)
-        pydirectinput.keyUp("e")                      #箱2
+        keyUp("f")                      #箱2
         # turn(20,-61)
-        pydirectinput.moveRel(-1220,0,relative=True)
+        moveRel(-1220,0,relative=True)
         run(11500)
         # turn(20,-28)
-        pydirectinput.moveRel(-550,0,relative=True)
+        moveRel(-550,0,relative=True)
         run(4150)
         # turn(20,-20)
-        pydirectinput.moveRel(-400,0,relative=True)
+        moveRel(-400,0,relative=True)
         run(100)
-        pydirectinput.moveRel(0,150,relative=True)
+        moveRel(0,150,relative=True)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")                     #桥洞箱
+        keyDown("f")                     #桥洞箱
         time.sleep(1.3)
-        pydirectinput.keyUp("e")
+        keyUp("f")
         # turn(20,-90)
-        pydirectinput.moveRel(0,-150,relative=True)
-        pydirectinput.moveRel(-1800,0,relative=True)
+        moveRel(0,-150,relative=True)
+        moveRel(-1800,0,relative=True)
         run(3500)
         # turn(20,-70)
-        pydirectinput.moveRel(-1440,0,relative=True)
+        moveRel(-1440,0,relative=True)
         run(4700)
-        pydirectinput.press("2")
+        press("2")
         time.sleep(1)
-        pydirectinput.rightClick()
+        rightClick()
         time.sleep(1)
-        pydirectinput.keyDown("s")
+        keyDown("s")
         time.sleep(0.55)
-        pydirectinput.keyUp("s")
-        pydirectinput.keyDown("a")
+        keyUp("s")
+        keyDown("a")
         time.sleep(2.8)
-        pydirectinput.keyUp("a")
+        keyUp("a")
         # turn(20,-52)
-        pydirectinput.moveRel(-1040,0,relative=True)
+        moveRel(-1040,0,relative=True)
         run(1400)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")                        #雕像前一箱
+        keyDown("f")                        #雕像前一箱
         time.sleep(1.3)
-        pydirectinput.keyUp("e")
+        keyUp("f")
         # turn(20,79)
-        pydirectinput.moveRel(1580,0,relative=True)
+        moveRel(1580,0,relative=True)
         run(3100)
         # turn(20,20)
-        pydirectinput.moveRel(420,0,relative=True)
+        moveRel(420,0,relative=True)
         run(1000)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")                        #雕像箱子
+        keyDown("f")                        #雕像箱子
         time.sleep(1.3)
-        pydirectinput.keyUp("e")
+        keyUp("f")
         # turn(20,-65)
-        pydirectinput.moveRel(-1300,0,relative=True)
+        moveRel(-1300,0,relative=True)
         run(2500)
         # turn(20,-21)
-        pydirectinput.moveRel(-420,0,relative=True)
-        pydirectinput.press("1")
+        moveRel(-420,0,relative=True)
+        press("1")
         time.sleep(1)
-        pydirectinput.leftClick()
+        leftClick()
         time.sleep(1)
         run(6200)
-        pydirectinput.moveRel(0,150,relative=True)
+        moveRel(0,150,relative=True)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")                         #过桥后箱子
+        keyDown("f")                         #过桥后箱子
         time.sleep(2)
-        pydirectinput.keyUp("e")
-        pydirectinput.moveRel(0,-150,relative=True)
+        keyUp("f")
+        moveRel(0,-150,relative=True)
         # turn(20,47)
-        pydirectinput.moveRel(960,0,relative=True)
+        moveRel(960,0,relative=True)
         run(4300)
-        pydirectinput.moveRel(0,150,relative=True)
+        moveRel(0,150,relative=True)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")                         #瀑布后箱子
+        keyDown("f")                         #瀑布后箱子
         time.sleep(1.3)
-        pydirectinput.keyUp("e")
+        keyUp("f")
         # turn(20,-90)
-        pydirectinput.moveRel(0,-150,relative=True)
-        pydirectinput.moveRel(-1800,0,relative=True)
+        moveRel(0,-150,relative=True)
+        moveRel(-1800,0,relative=True)
         run(1500)
         # turn(20,44)
-        pydirectinput.moveRel(880,0,relative=True)
+        moveRel(880,0,relative=True)
         run(3850)
-        pydirectinput.moveRel(0,150,relative=True)
+        moveRel(0,150,relative=True)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")                         #倒数第二箱
+        keyDown("f")                         #倒数第二箱
         time.sleep(1.3)
-        pydirectinput.keyUp("e")
+        keyUp("f")
         # turn(20,-20)
-        pydirectinput.moveRel(0,-150,relative=True)
-        pydirectinput.moveRel(-400,0,relative=True)
+        moveRel(0,-150,relative=True)
+        moveRel(-400,0,relative=True)
         run(5200)
         # turn(20,50)
-        pydirectinput.moveRel(1000,0,relative=True)
-        run(1450)
-        pydirectinput.moveRel(0,150,relative=True)
+        moveRel(1000,0,relative=True)
+        run(1550)
+        moveRel(0,150,relative=True)
         time.sleep(0.5)
-        pydirectinput.keyDown("e")                         #最后一箱子
+        keyDown("f")                         #最后一箱子
         time.sleep(1.3)
-        pydirectinput.keyUp("e")
-        print("已执行",tabo,"大轮",20-i,"小轮")
+        keyUp("f")
         time.sleep(0.5)
         if i>0:
-            pydirectinput.press("m")
+            press("m")
             time.sleep(0.7)
-            pydirectinput.move(-958,0)
+            move(-958,0)
             time.sleep(1)
             turn(20,50)
             time.sleep(0.03)
-            pydirectinput.mouseDown()
+            mouseDown()
             time.sleep(1.2)
-            pydirectinput.mouseUp()
+            mouseUp()
             time.sleep(0.2)
-            pydirectinput.press("m")
+            press("m")
             time.sleep(35)
 
-    pydirectinput.press("tab")
-    pydirectinput.keyDown("o")
+    press("tab")
+    keyDown("o")
     time.sleep(4)
-    pydirectinput.keyUp("o")
-    tabo=tabo+1
+    keyUp("o")
     time.sleep(15)
+
+time.sleep(2)
+
+try:
+    while True:
+        start()
+except KeyboardInterrupt:
+    ...
