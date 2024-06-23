@@ -70,9 +70,9 @@ def start():
         moveRel(-600,0,relative=True)
         run(300)
         time.sleep(0.5)
-        keyDown("f")                   #箱1
+        keyDown("e")                   #箱1
         time.sleep(1.3)
-        keyUp("f")
+        keyUp("e")
         #turn(20,54)
         moveRel(1080,0,relative=True)
         run(5710)
@@ -80,9 +80,9 @@ def start():
         moveRel(-1120,0,relative=True)
         run(2300)
         time.sleep(0.5)
-        keyDown("f")
+        keyDown("e")
         time.sleep(1.3)
-        keyUp("f")                      #箱2
+        keyUp("e")                      #箱2
         # turn(20,-61)
         moveRel(-1220,0,relative=True)
         run(11500)
@@ -94,9 +94,9 @@ def start():
         run(100)
         moveRel(0,150,relative=True)
         time.sleep(0.5)
-        keyDown("f")                     #桥洞箱
+        keyDown("e")                     #桥洞箱
         time.sleep(1.3)
-        keyUp("f")
+        keyUp("e")
         # turn(20,-90)
         moveRel(0,-150,relative=True)
         moveRel(-1800,0,relative=True)
@@ -118,9 +118,9 @@ def start():
         moveRel(-1040,0,relative=True)
         run(1400)
         time.sleep(0.5)
-        keyDown("f")                        #雕像前一箱
+        keyDown("e")                        #雕像前一箱
         time.sleep(1.3)
-        keyUp("f")
+        keyUp("e")
         # turn(20,79)
         moveRel(1580,0,relative=True)
         run(3100)
@@ -128,9 +128,9 @@ def start():
         moveRel(420,0,relative=True)
         run(1000)
         time.sleep(0.5)
-        keyDown("f")                        #雕像箱子
+        keyDown("e")                        #雕像箱子
         time.sleep(1.3)
-        keyUp("f")
+        keyUp("e")
         # turn(20,-65)
         moveRel(-1300,0,relative=True)
         run(2500)
@@ -143,18 +143,18 @@ def start():
         run(6200)
         moveRel(0,150,relative=True)
         time.sleep(0.5)
-        keyDown("f")                         #过桥后箱子
+        keyDown("e")                         #过桥后箱子
         time.sleep(2)
-        keyUp("f")
+        keyUp("e")
         moveRel(0,-150,relative=True)
         # turn(20,47)
         moveRel(960,0,relative=True)
         run(4300)
         moveRel(0,150,relative=True)
         time.sleep(0.5)
-        keyDown("f")                         #瀑布后箱子
+        keyDown("e")                         #瀑布后箱子
         time.sleep(1.3)
-        keyUp("f")
+        keyUp("e")
         # turn(20,-90)
         moveRel(0,-150,relative=True)
         moveRel(-1800,0,relative=True)
@@ -164,9 +164,9 @@ def start():
         run(3850)
         moveRel(0,150,relative=True)
         time.sleep(0.5)
-        keyDown("f")                         #倒数第二箱
+        keyDown("e")                         #倒数第二箱
         time.sleep(1.3)
-        keyUp("f")
+        keyUp("e")
         # turn(20,-20)
         moveRel(0,-150,relative=True)
         moveRel(-400,0,relative=True)
@@ -176,9 +176,10 @@ def start():
         run(1550)
         moveRel(0,150,relative=True)
         time.sleep(0.5)
-        keyDown("f")                         #最后一箱子
+        keyDown("e")                         #最后一箱子
         time.sleep(1.3)
-        keyUp("f")
+        keyUp("e")
+        print("已执行",tabo,"大轮",20-i,"小轮")
         time.sleep(0.5)
         if i>0:
             press("m")
