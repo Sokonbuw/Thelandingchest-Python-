@@ -1,3 +1,4 @@
+import pydirectinput
 from pydirectinput import (
     keyDown,
     keyUp,
@@ -8,12 +9,11 @@ from pydirectinput import (
     mouseUp,
     press,
     leftClick,
-    rightClick,
-    FAILSAFE
+    rightClick
 )
 import time
 
-FAILSAFE=False
+pydirectinput.FAILSAFE=False
 
 def turn(times:int,px:int):
     i=1
