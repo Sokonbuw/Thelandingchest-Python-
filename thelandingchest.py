@@ -55,6 +55,7 @@ class SwitchSettings:
     sword: bool  # 是否开启故我在挥刀
     Ammo: bool  # 是否开启无绿弹自动切换重弹
     landingerror: bool  # 是否开启检测进图是否成功
+    landingerror1: bool
 
 
 settings = tomllib.loads(SETTINGS_PATH.read_text("utf-8"))
@@ -85,6 +86,30 @@ def run(t: int):
     keyUp("shiftleft")
 
 
+def enter1():
+    j = 0
+    while j != 3:
+        time.sleep(1)
+        press(base_settings.map)
+        j = j + 1
+    j = 0
+    time.sleep(3)
+    leftClick()
+    time.sleep(time_settings.waittime_after_run)
+    move(-958, 0)
+    time.sleep(1)
+    turn(20, 50)
+    time.sleep(0.1)
+    leftClick()
+    mouseDown()
+    time.sleep(1.2)
+    mouseUp()
+    time.sleep(0.2)
+    moveTo(run_settings.landingx, run_settings.landingy)
+    time.sleep(0.2)
+    leftClick()
+
+
 def enter():
     press(base_settings.map)
     time.sleep(time_settings.waittime_after_run)
@@ -108,30 +133,25 @@ def start():
     global tabo
     global white
     global black
-    j = 0
-    while j != 3:
+    enter1()
+    if switch_settings.landingerror1:
+        time.sleep(40)
+        enter1()
         time.sleep(0.1)
-        press(base_settings.map)
-        j = j + 1
-    j = 0
-    time.sleep(3)
-    leftClick()
-    time.sleep(time_settings.waittime_after_run)
-    move(-958, 0)
-    time.sleep(1)
-    turn(20, 50)
-    time.sleep(0.1)
-    leftClick()
-    leftClick()
-    mouseDown()
-    time.sleep(1.2)
-    mouseUp()
-    time.sleep(0.2)
-    moveTo(run_settings.landingx, run_settings.landingy)
-    time.sleep(0.2)
-    leftClick()
-    leftClick()
-    time.sleep(60)
+        while True:
+            if color(80, 284) != black:
+                reM = reM + 1
+                print("轨道进图可能失败！重试次数：", reM)
+                press(base_settings.map)
+                time.sleep(1)
+                enter1()
+                time.sleep(0.1)
+            else:
+                time.sleep(20)
+                break
+        reM = 0
+    else:
+        time.sleep(60)
 
     i = run_settings.circulate
     ammocounter = 0
@@ -341,6 +361,11 @@ if switch_settings.Ammo:
     print("绿弹保底机制开启中")
 else:
     print("绿弹保底机制关闭中")
+time.sleep(0.2)
+if switch_settings.landingerror1:
+    print("轨道进图检测功能开启中")
+else:
+    print("轨道进图检测功能关闭中")
 time.sleep(0.2)
 print(base_settings.read)
 time.sleep(0.3)
