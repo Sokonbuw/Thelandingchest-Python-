@@ -25,3 +25,4 @@ warlock=false          #是否开启术士地狱火版本 开启为true 关闭�
 sword=true            #是否开启故我在挥刀
 Ammo=true             #是否开启无绿弹自动切换重弹
 landingerror=true    #是否开启检测进图是否成功
+landingerror1=false     #是否开启检测轨道进图是否成功
