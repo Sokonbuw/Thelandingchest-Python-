@@ -105,7 +105,7 @@ def enter1():
     time.sleep(time_settings.waittime_after_run)
     move(-958, 0)
     time.sleep(1)
-    turn(20, 50)
+    turn(run_settings.movetimes, run_settings.movepx)
     time.sleep(0.1)
     leftClick()
     mouseDown()
