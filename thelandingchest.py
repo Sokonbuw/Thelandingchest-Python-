@@ -168,6 +168,7 @@ def start():
     global black
     enter1()
     if switch_settings.landingerror1:
+        reM = 0
         time.sleep(40)
         enter1()
         time.sleep(0.1)
