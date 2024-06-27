@@ -1,3 +1,5 @@
+import win32api
+import psutil
 import pydirectinput
 from pathlib import Path
 import tomllib
@@ -28,6 +30,7 @@ class BaseSettings:
     interaction: str
     swoop: str
     read: str
+    path: str
 
 
 @dataclasses.dataclass
@@ -37,6 +40,7 @@ class TimeSettings:
     faliuretime1: float  # 长按着陆点后等待落地时间 默认7
     faliuretime2: float  # 进图后等待时间 默认28
     swordtime: float
+    restarttime: float
 
 
 @dataclasses.dataclass
@@ -47,6 +51,8 @@ class RunningSettings:
     thelastchest: int  # 最后一箱的跑步距离 默认1580
     landingx: int
     landingy: int
+    restartx: int
+    restarty: int
 
 
 @dataclasses.dataclass
@@ -56,6 +62,7 @@ class SwitchSettings:
     Ammo: bool  # 是否开启无绿弹自动切换重弹
     landingerror: bool  # 是否开启检测进图是否成功
     landingerror1: bool
+    restart: bool
 
 
 settings = tomllib.loads(SETTINGS_PATH.read_text("utf-8"))
@@ -127,6 +134,32 @@ def color(x, y):
     screenshot = ImageGrab.grab()
     pixel_color = screenshot.getpixel((x, y))
     return pixel_color
+
+
+def kill_process(process):
+    for proc in psutil.process_iter(["name"]):
+        if proc.info["name"] == process:
+            proc.kill()
+
+
+def restart():
+    kill_process("destiny2.exe")
+    time.sleep(60)
+    win32api.ShellExecute(
+        0,
+        "open",
+        base_settings.path,
+        "",
+        "",
+        1,
+    )
+    time.sleep(time_settings.restarttime)
+    leftClick()
+    leftClick()
+    time.sleep(60)
+    moveTo(run_settings.restartx, run_settings.restarty)
+    time.sleep(1)
+    leftClick()
 
 
 def start():
@@ -319,6 +352,16 @@ def start():
                         press(base_settings.map)
                         time.sleep(1)
                         enter()
+                        time.sleep(0.1)
+                        if switch_settings.restart:
+                            if reM > 10:
+                                print("检测到游戏崩溃！尝试重启中...")
+                                restart()
+                                time.sleep(30)
+                                enter1()
+                                time.sleep(60)
+                                enter()
+                                reM = 0
                     else:
                         break
                 reM = 0
@@ -329,6 +372,16 @@ def start():
                         reM1 = reM1 + 1
                         print("进入失落之城！重试次数：", reM1)
                         enter()
+                        time.sleep(time_settings.faliuretime1)
+                        if switch_settings.restart:
+                            if reM1 > 10:
+                                print("检测到掉线！尝试重启中...")
+                                restart()
+                                time.sleep(30)
+                                enter1()
+                                time.sleep(60)
+                                enter()
+                                reM1 = 0
                     else:
                         break
                 reM1 = 0
@@ -366,6 +419,14 @@ if switch_settings.landingerror1:
     print("轨道进图检测功能开启中")
 else:
     print("轨道进图检测功能关闭中")
+time.sleep(0.2)
+if switch_settings.restart and switch_settings.landingerror:
+    print("崩溃检测重进功能开启中")
+elif switch_settings.restart and switch_settings.landingerror == 0:
+    print("崩溃检测重进功能开启失败！请打开进图检测功能")
+    time.sleep(1000)
+else:
+    print("崩溃检测重进功能开启中")
 time.sleep(0.2)
 print(base_settings.read)
 time.sleep(0.3)
