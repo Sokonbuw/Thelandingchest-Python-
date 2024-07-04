@@ -49,6 +49,7 @@ class TimeSettings:
 
 @dataclasses.dataclass
 class RunningSettings:
+    mousespeed:int
     circulate: int  # 循环次数 即一大轮要执行多少小轮 默认15
     movetimes: int
     movepx: int  # 控制开图时鼠标移动到最左边后往右移的位移量 (x,y) x移动次数 y代表每次移动像素 默认为(20,50) 有问题请尝试(20,40)
@@ -107,7 +108,7 @@ def enter1():
     time.sleep(3)
     leftClick()
     time.sleep(time_settings.waittime_after_run)
-    move(-958, 0)
+    move(-1277, 0)
     time.sleep(1)
     turn(20, 50)
     time.sleep(0.1)
@@ -124,7 +125,7 @@ def enter1():
 def enter():
     press(base_settings.map)
     time.sleep(time_settings.waittime_after_run)
-    move(-958, 0)
+    move(-1277, 0)
     time.sleep(1)
     turn(run_settings.movetimes, run_settings.movepx)
     time.sleep(0.03)
@@ -177,7 +178,7 @@ def start():
         enter1()
         time.sleep(0.1)
         while True:
-            if color(80, 284) != black:
+            if color(106, 375) != black:
                 reM = reM + 1
                 print("轨道进图可能失败！重试次数：", reM)
                 press(base_settings.map)
@@ -203,9 +204,9 @@ def start():
             print("触发绿弹保底机制！")
             press("F1")
             time.sleep(1)
-            moveTo(522, 642)
+            moveTo(700, 850)
             time.sleep(1)
-            move(-100, 0)
+            move(-150, 0)
             leftClick()
             time.sleep(1.5)
             leftClick()
@@ -213,7 +214,7 @@ def start():
             press("F1")
             time.sleep(2)
             ammocounter = 0
-        moveRel(-320, 0, relative=True)
+        moveRel(round(-320*15/run_settings.mousespeed), 0, relative=True)
         run(5000)
         if switch_settings.warlock:
             press("space")
@@ -221,45 +222,45 @@ def start():
             press(base_settings.swoop)
             time.sleep(2)
         # turn(20,-10)
-        moveRel(-200, 0, relative=True)
+        moveRel(round(-200*15/run_settings.mousespeed), 0, relative=True)
         run(3100)
         # turn(20,-30)
-        moveRel(-600, 0, relative=True)
+        moveRel(round(-600*15/run_settings.mousespeed), 0, relative=True)
         run(300)
         time.sleep(0.5)
         keyDown(base_settings.interaction)  # 箱1
         time.sleep(1.3)
         keyUp(base_settings.interaction)
         # turn(20,54)
-        moveRel(1080, 0, relative=True)
+        moveRel(round(1080*15/run_settings.mousespeed), 0, relative=True)
         run(5710)
         # turn(20,-56)
-        moveRel(-1120, 0, relative=True)
+        moveRel(round(-1120*15/run_settings.mousespeed), 0, relative=True)
         run(2300)
         time.sleep(0.5)
         keyDown(base_settings.interaction)
         time.sleep(1.3)
         keyUp(base_settings.interaction)  # 箱2
         # turn(20,-61)
-        moveRel(-1220, 0, relative=True)
+        moveRel(round(-1220*15/run_settings.mousespeed), 0, relative=True)
         run(11500)
         # turn(20,-28)
-        moveRel(-550, 0, relative=True)
+        moveRel(round(-550*15/run_settings.mousespeed), 0, relative=True)
         run(4150)
         # turn(20,-20)
-        moveRel(-400, 0, relative=True)
+        moveRel(round(-400*15/run_settings.mousespeed), 0, relative=True)
         run(100)
-        moveRel(0, 150, relative=True)
+        moveRel(0, round(150*15/run_settings.mousespeed), relative=True)
         time.sleep(0.5)
         keyDown(base_settings.interaction)  # 桥洞箱
         time.sleep(1.3)
         keyUp(base_settings.interaction)
         # turn(20,-90)
-        moveRel(0, -150, relative=True)
-        moveRel(-1800, 0, relative=True)
+        moveRel(0, round(-150*15/run_settings.mousespeed), relative=True)
+        moveRel(round(-1800*15/run_settings.mousespeed), 0, relative=True)
         run(3500)
         # turn(20,-70)
-        moveRel(-1440, 0, relative=True)
+        moveRel(round(-1440*15/run_settings.mousespeed), 0, relative=True)
         run(4700)
         if switch_settings.sword:
             press("2")
@@ -273,27 +274,27 @@ def start():
         time.sleep(2.8)
         keyUp("a")
         # turn(20,-52)
-        moveRel(-1040, 0, relative=True)
+        moveRel(round(-1040*15/run_settings.mousespeed), 0, relative=True)
         run(1400)
         time.sleep(0.5)
         keyDown(base_settings.interaction)  # 雕像前一箱
         time.sleep(1.3)
         keyUp(base_settings.interaction)
         # turn(20,79)
-        moveRel(1580, 0, relative=True)
+        moveRel(round(1580*15/run_settings.mousespeed), 0, relative=True)
         run(3100)
         # turn(20,20)
-        moveRel(420, 0, relative=True)
+        moveRel(round(420*15/run_settings.mousespeed), 0, relative=True)
         run(1000)
         time.sleep(0.5)
         keyDown(base_settings.interaction)  # 雕像箱子
         time.sleep(1.3)
         keyUp(base_settings.interaction)
         # turn(20,-65)
-        moveRel(-1300, 0, relative=True)
+        moveRel(round(-1300*15/run_settings.mousespeed), 0, relative=True)
         run(2500)
         # turn(20,-21)
-        moveRel(-420, 0, relative=True)
+        moveRel(round(-420*15/run_settings.mousespeed), 0, relative=True)
         press("1")
         time.sleep(1)
         leftClick()
@@ -304,40 +305,40 @@ def start():
             press(base_settings.swoop)
             time.sleep(2)
         run(6200)
-        moveRel(0, 150, relative=True)
+        moveRel(0, round(150*15/run_settings.mousespeed), relative=True)
         time.sleep(0.5)
         keyDown(base_settings.interaction)  # 过桥后箱子
         time.sleep(2)
         keyUp(base_settings.interaction)
-        moveRel(0, -150, relative=True)
+        moveRel(0, round(-150*15/run_settings.mousespeed), relative=True)
         # turn(20,47)
-        moveRel(960, 0, relative=True)
+        moveRel(round(960*15/run_settings.mousespeed), 0, relative=True)
         run(4300)
-        moveRel(0, 150, relative=True)
+        moveRel(0, round(150*15/run_settings.mousespeed), relative=True)
         time.sleep(0.5)
         keyDown(base_settings.interaction)  # 瀑布后箱子
         time.sleep(1.3)
         keyUp(base_settings.interaction)
         # turn(20,-90)
-        moveRel(0, -150, relative=True)
-        moveRel(-1800, 0, relative=True)
+        moveRel(0, round(-150*15/run_settings.mousespeed), relative=True)
+        moveRel(round(-1800*15/run_settings.mousespeed), 0, relative=True)
         run(1500)
         # turn(20,44)
-        moveRel(880, 0, relative=True)
+        moveRel(round(880*15/run_settings.mousespeed), 0, relative=True)
         run(3850)
-        moveRel(0, 150, relative=True)
+        moveRel(0, round(150*15/run_settings.mousespeed), relative=True)
         time.sleep(0.5)
         keyDown(base_settings.interaction)  # 倒数第二箱
         time.sleep(1.3)
         keyUp(base_settings.interaction)
         # turn(20,-20)
-        moveRel(0, -150, relative=True)
-        moveRel(-400, 0, relative=True)
+        moveRel(0, round(-150*15/run_settings.mousespeed), relative=True)
+        moveRel(round(-400*15/run_settings.mousespeed), 0, relative=True)
         run(5200)
         # turn(20,50)
-        moveRel(1000, 0, relative=True)
+        moveRel(round(1000*15/run_settings.mousespeed), 0, relative=True)
         run(run_settings.thelastchest)
-        moveRel(0, 150, relative=True)
+        moveRel(0, round(150*15/run_settings.mousespeed), relative=True)
         time.sleep(0.5)
         keyDown(base_settings.interaction)  # 最后一箱子
         time.sleep(1.3)
@@ -351,7 +352,7 @@ def start():
             time.sleep(0.1)
             if switch_settings.landingerror:
                 while True:
-                    if color(80, 284) != black:
+                    if color(106, 375) != black:
                         reM = reM + 1
                         print("进图失败！重试次数：", reM)
                         press(base_settings.map)
@@ -373,7 +374,7 @@ def start():
             time.sleep(time_settings.faliuretime1)  # 判断进图成功 等时间着陆
             if switch_settings.landingerror:
                 while True:
-                    if color(80, 280) != white:
+                    if color(106, 375) != white:
                         reM1 = reM1 + 1
                         print("进入失落之城！重试次数：", reM1)
                         enter()
@@ -393,9 +394,9 @@ def start():
             time.sleep(time_settings.faliuretime2)
 
     press("tab")
-    keyDown("o")
+    keyDown("p")
     time.sleep(4)
-    keyUp("o")
+    keyUp("p")
     tabo = tabo + 1
     time.sleep(time_settings.waittime)
 

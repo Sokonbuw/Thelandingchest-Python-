@@ -4,10 +4,10 @@
 
 [base]
 map='m'          #地图
-interaction='f'  #互动
-swoop='q'        #凤凰俯冲
+interaction='e'  #互动
+swoop='v'        #凤凰俯冲
 read="success!"
-path='D:\Steam\steamapps\common\Destiny 2\destiny2.exe'  #用1.6请先把这个改成自己的游戏路径
+path='C:\Program Files (x86)\Steam\steamapps\common\Destiny 2\destiny2.exe'  #用1.6请先把这个改成自己的游戏路径
 
 [time]
 waittime=15        #执行一大轮之后tabo后的等待时间 默认为15
@@ -18,6 +18,7 @@ swordtime=2        #刀重击后等待时间 根据刀不同框架的后摇调�
 restarttime=120    #崩溃重进游戏时启动游戏后等待时间
 
 [run]
+mousespeed=4      #鼠标速度
 circulate=15       #循环次数 即一大轮要执行多少小轮 默认15
 movetimes=20
 movepx=50   #控制开图时鼠标移动到最左边后往右移的位移量 movetimes移动次数 movepx代表每次移动像素 默认为(20,50) 有问题请尝试(20,40)
@@ -28,9 +29,9 @@ restartx=1362       #这两行是调整崩溃重进时点击的角色
 restarty=676        #1351,466为第一个角色  1356，571为第二个角色   1362，676为第三个角色
 
 [switch]
-warlock=false          #是否开启术士地狱火版本 开启为true 关闭为false
+warlock=true          #是否开启术士地狱火版本 开启为true 关闭为false
 sword=true            #是否开启故我在挥刀
 Ammo=true             #是否开启无绿弹自动切换重弹
 landingerror=true    #是否开启检测进图是否成功
-landingerror1=false     #是否开启检测轨道进图是否成功
+landingerror1=true     #是否开启检测轨道进图是否成功
 restart=true           #是否开启游戏崩溃检测重进（使用此功能必须开启检测进图功能 34行 并且先改掉上面你的游戏路径）
