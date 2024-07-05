@@ -199,16 +199,14 @@ def start():
     if switch_settings.landingerror1:
         reM = 0
         time.sleep(40)
-        enter1()
-        time.sleep(0.1)
         while True:
-            if color(x, y) != black:
+            if color(x, y) != white:
                 reM = reM + 1
                 logging.warning("进图失败！重试次数：%d" % reM)
-                press(base_settings.map)
+                press('tab')
                 time.sleep(1)
                 enter1()
-                time.sleep(0.1)
+                time.sleep(40)
             else:
                 time.sleep(20)
                 break
@@ -424,9 +422,9 @@ def start():
             time.sleep(time_settings.faliuretime2)
 
     press("tab")
-    keyDown("p")
+    keyDown("o")
     time.sleep(4)
-    keyUp("p")
+    keyUp("o")
     tabo = tabo + 1
     time.sleep(time_settings.waittime)
 
@@ -467,7 +465,7 @@ elif switch_settings.restart and switch_settings.landingerror == 0:
     print("崩溃检测重进功能开启失败！请打开进图检测功能")
     time.sleep(1000)
 else:
-    print("崩溃检测重进功能开启中")
+    print("崩溃检测重进功能关闭中")
 time.sleep(0.2)
 print(base_settings.read)
 logging.info("=======================================")
