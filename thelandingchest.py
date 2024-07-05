@@ -3,6 +3,7 @@ import psutil
 import pydirectinput
 from pathlib import Path
 import sys
+import logging
 
 if sys.version_info >= (3, 11):
     import tomllib
@@ -27,6 +28,16 @@ from PIL import ImageGrab
 pydirectinput.FAILSAFE = False
 
 SETTINGS_PATH = Path(f"./settings.toml")
+
+LOG_FORMAT = r"[%(levelname)s] %(asctime)s : %(message)s"
+DATE_FORMAT = r"%Y/%m/%d %H:%M:%S"
+logging.basicConfig(
+    filename="log.log",
+    level=logging.INFO,
+    format=LOG_FORMAT,
+    datefmt=DATE_FORMAT,
+    encoding="utf-8",
+)
 
 
 @dataclasses.dataclass
@@ -183,6 +194,7 @@ def start():
         x, y = 80, 284
     elif switch_settings.screen == "2k":
         x, y = 106, 375
+
     enter1()
     if switch_settings.landingerror1:
         reM = 0
@@ -192,7 +204,7 @@ def start():
         while True:
             if color(x, y) != black:
                 reM = reM + 1
-                print("轨道进图可能失败！重试次数：", reM)
+                logging.warning("进图失败！重试次数：%d" % reM)
                 press(base_settings.map)
                 time.sleep(1)
                 enter1()
@@ -213,7 +225,7 @@ def start():
         reM = 0
         reM1 = 0
         if ammocounter == 7 and switch_settings.Ammo:
-            print("触发绿弹保底机制！")
+            logging.info("触发绿弹保底机制！")
             press("F1")
             time.sleep(1)
             if switch_settings.screen == "1080p":
@@ -363,7 +375,7 @@ def start():
         keyUp(base_settings.interaction)
         time.sleep(0.5)
         press(base_settings.interaction)
-        print("已执行", tabo, "大轮", run_settings.circulate - i, "小轮")
+        logging.info("已执行%d大轮%d小轮" % (tabo, run_settings.circulate - i))
         time.sleep(0.5)
         if i > 0:
             enter()
@@ -372,14 +384,14 @@ def start():
                 while True:
                     if color(x, y) != black:
                         reM = reM + 1
-                        print("进图失败！重试次数：", reM)
+                        logging.warning("进图失败！重试次数：%d" % reM)
                         press(base_settings.map)
                         time.sleep(1)
                         enter()
                         time.sleep(0.1)
                         if switch_settings.restart:
                             if reM > 10:
-                                print("检测到游戏崩溃！尝试重启中...")
+                                logging.error("检测到游戏崩溃！尝试重启中...")
                                 restart()
                                 time.sleep(30)
                                 enter1()
@@ -394,12 +406,12 @@ def start():
                 while True:
                     if color(x, y) != white:
                         reM1 = reM1 + 1
-                        print("进入失落之城！重试次数：", reM1)
+                        logging.warning("进图失败！重试次数：%d" % reM)
                         enter()
                         time.sleep(time_settings.faliuretime1)
                         if switch_settings.restart:
                             if reM1 > 10:
-                                print("检测到掉线！尝试重启中...")
+                                logging.error("检测到掉线！尝试重启中...")
                                 restart()
                                 time.sleep(30)
                                 enter1()
@@ -419,6 +431,11 @@ def start():
     time.sleep(time_settings.waittime)
 
 
+if switch_settings.screen == "1080p" or switch_settings.screen == "2k":
+    print("分辨率设置为" + switch_settings.screen)
+else:
+    print("分辨率配置错误")
+    time.sleep(1000)
 if switch_settings.warlock:
     print("术士模式开启中")
 else:
@@ -453,9 +470,12 @@ else:
     print("崩溃检测重进功能开启中")
 time.sleep(0.2)
 print(base_settings.read)
+logging.info("=======================================")
+logging.info("配置文件检测完成")
 time.sleep(0.3)
 print("5秒后开启程序,请手动切到游戏窗口")
 time.sleep(5)
+logging.info("程序开始运行")
 
 if __name__ == "__main__":
     try:
