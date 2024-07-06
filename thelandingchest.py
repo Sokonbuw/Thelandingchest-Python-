@@ -68,8 +68,7 @@ class RunningSettings:
     thelastchest: int  # 最后一箱的跑步距离 默认1580
     landingx: int
     landingy: int
-    restartx: int
-    restarty: int
+    character: int
 
 
 @dataclasses.dataclass
@@ -167,6 +166,26 @@ def kill_process(process):
 
 
 def restart():
+    if switch_settings.screen == "1080p":
+        if run_settings.character == 1:
+            restartx = 1351
+            restarty = 466
+        elif run_settings.character == 2:
+            restartx = 1356
+            restarty = 571
+        elif run_settings.character == 3:
+            restartx = 1362
+            restarty = 676
+    elif switch_settings.screen == "2k":
+        if run_settings.character == 1:
+            restartx = 1800
+            restarty = 600
+        elif run_settings.character == 2:
+            restartx = 1800
+            restarty = 750
+        elif run_settings.character == 3:
+            restartx = 1800
+            restarty = 900
     kill_process("destiny2.exe")
     time.sleep(60)
     win32api.ShellExecute(
@@ -181,7 +200,7 @@ def restart():
     leftClick()
     leftClick()
     time.sleep(60)
-    moveTo(run_settings.restartx, run_settings.restarty)
+    moveTo(restartx, restarty)
     time.sleep(1)
     leftClick()
 
@@ -203,7 +222,7 @@ def start():
             if color(x, y) != white:
                 reM = reM + 1
                 logging.warning("进图失败！重试次数：%d" % reM)
-                press('tab')
+                press("tab")
                 time.sleep(1)
                 enter1()
                 time.sleep(40)
