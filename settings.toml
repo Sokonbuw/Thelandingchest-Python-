@@ -1,38 +1,38 @@
 #用1.6的仔细看下面的配置文件 没改全或者改错了脚本会崩溃
 #用1.6的仔细看下面的配置文件 没改全或者改错了脚本会崩溃
 #用1.6的仔细看下面的配置文件 没改全或者改错了脚本会崩溃
+#使用2k请更改27，28行与33行 不把点开始的配置写进脚本里是因为有人点不到开始！
 
 [base]
 map='m'          #地图
-interaction='e'  #互动
-swoop='v'        #凤凰俯冲
+interaction='f'  #互动
+swoop='q'        #凤凰俯冲
 read="success!"
-path='C:\Program Files (x86)\Steam\steamapps\common\Destiny 2\destiny2.exe'  #用1.6请先把这个改成自己的游戏路径
+path='D:\Steam\steamapps\common\Destiny 2\destiny2.exe'  #用1.6请先把这个改成自己的游戏路径 两边是单引号
 
 [time]
 waittime=15        #执行一大轮之后tabo后的等待时间 默认为15
 waittime_after_run=0.7 #每次开图时按M后等待时间 默认为0.7
 faliuretime1=15     #长按着陆点后等待落地时间 默认15
 faliuretime2=20    #进图后等待时间 默认20
-swordtime=2        #刀重击后等待时间 根据刀不同框架的后摇调整
+swordtime=1        #刀重击后等待时间 根据刀不同框架的后摇调整
 restarttime=120    #崩溃重进游戏时启动游戏后等待时间
 
 [run]
-mousespeed=4      #鼠标速度
+mousespeed=9      #鼠标速度
 circulate=15       #循环次数 即一大轮要执行多少小轮 默认15
 movetimes=20
-movepx=50   #控制开图时鼠标移动到最左边后往右移的位移量 movetimes移动次数 movepx代表每次移动像素 默认为(20,50) 有问题请尝试(20,40)
+movepx=50   #控制开图时鼠标移动到最左边后往右移的位移量 movetimes移动次数 movepx代表每次移动像素 默认为(20,50)
 thelastchest=1580  #最后一箱的跑步距离 默认1580
-landingx=2175       #从轨道进图点开始位置
-landingy=1170        #1080p:(1498.913);2k:(2175,1170)
-restartx=1362       #1351,466为第一个角色  1356，571为第二个角色   1362，676为第三个角色(1080p)
-restarty=676        #1800,600为第一个角色  1800，750为第二个角色   1800，900为第三个角色(2k)这两行是调整崩溃重进时点击的角色
+landingx=1498       #从轨道进图点开始位置
+landingy=913        #1080p:(1498.913);2k:(2175,1170)
+character=1         #崩溃重启时角色选择 从上到下1或2或3
                     
 [switch]
-screen='2k'         #屏幕分辨率（'1080p','2k'）
+screen='1080p'         #屏幕分辨率（'1080p','2k'）
 warlock=false          #是否开启术士地狱火版本 开启为true 关闭为false
 sword=true            #是否开启故我在挥刀
 Ammo=true             #是否开启无绿弹自动切换重弹
 landingerror=true    #是否开启检测进图是否成功
 landingerror1=true     #是否开启检测轨道进图是否成功
-restart=true           #是否开启游戏崩溃检测重进（使用此功能必须开启检测进图功能 36行 并且先改掉上面你的游戏路径）
+restart=true           #是否开启游戏崩溃检测重进（使用此功能必须开启检测进图功能 37行 并且先改掉上面你的游戏路径）
